@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>       
+        <meta charset="utf-8">
+        <title> Inicio de sesion </title>    
+        <style type="text/css"></style>
+        <script type="text/javascript"></script>
+        <link rel="stylesheet" href="css/styles.css">        
+    </head>
+    
+    <body>  
+        <div id="container">
+            <div id="central">
+                <div id="login">
+                    <div class="logo">
+                        <img src="Image/logo.png" alt="Logotipo de la Universidad">
+                    </div>
+                    <div class="titulo">
+                        Bienvenido
+                    </div>
+                    <form id="loginform">
+                        <input type="text" id="username" name="usuario" placeholder="Usuario" required>
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                        <button type="submit" title="Ingresar" name="Ingresar">Ingresar</button>
+                        <p id="errorMessage" class="error-message"></p>
+                    </form>
+                    
+                    <div class="pie-form">
+                        <a href="#">Reinicio de contraseña?</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <script src="js/script.js"></script>
+    </body>
+</html>
