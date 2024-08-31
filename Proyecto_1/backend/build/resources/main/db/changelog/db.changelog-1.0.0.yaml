@@ -1,0 +1,243 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: valcantaram
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id_user
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(85)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: position
+            columns:
+              - column:
+                  name: id_position
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: is_active
+                  type: TINYINT(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id_employee
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: dpi
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: firstname
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contact
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: is_active
+                  type: TINYINT(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_position
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: EMPLOYEE_POSITION_FK
+                    referencedTableName: position
+                    referencedColumnNames: id_position
+              - column:
+                  name: id_user
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: EMPLOYEE_USER_FK
+                    referencedTableName: user
+                    referencedColumnNames: id_user
+        - createTable:
+            tableName: timekeeping
+            columns:
+              - column:
+                  name: id_timekeeping
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: check_in
+                  type: DATETIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: check_out
+                  type: DATETIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: man_hours
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_employee
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: TIME_EMP_FK
+                    referencedTableName: employee
+                    referencedColumnNames: id_employee
+
+  - changeSet:
+      id: 2
+      author: valcantaram
+      changes:
+        - insert:
+            tableName: position
+            columns:
+              - column:
+                  name: name
+                  value: "Manager"
+              - column:
+                  name: description
+                  value: "Responsible for overseeing department operations"
+              - column:
+                  name: is_active
+                  valueBoolean: true
+              - column:
+                  name: created_at
+                  valueDate: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  valueDate: CURRENT_TIMESTAMP
+        - insert:
+            tableName: position
+            columns:
+              - column:
+                  name: name
+                  value: "Developer"
+              - column:
+                  name: description
+                  value: "Responsible for writing and maintaining code"
+              - column:
+                  name: is_active
+                  valueBoolean: true
+              - column:
+                  name: created_at
+                  valueDate: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  valueDate: CURRENT_TIMESTAMP
+        - insert:
+            tableName: position
+            columns:
+              - column:
+                  name: name
+                  value: "HR Specialist"
+              - column:
+                  name: description
+                  value: "Responsible for employee relations and HR tasks"
+              - column:
+                  name: is_active
+                  valueBoolean: true
+              - column:
+                  name: created_at
+                  valueDate: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  valueDate: CURRENT_TIMESTAMP
